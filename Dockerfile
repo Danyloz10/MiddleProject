@@ -1,4 +1,7 @@
-FROM openjdk:17-jdk-alpine
-ADD target/
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM maven:3.8.5-openjdk-17
+
+WORKDIR ../IDEAProjects
+COPY . .
+RUN mvn clean install
+
+CMD mvn spring-boot:run

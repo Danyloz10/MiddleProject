@@ -1,4 +1,4 @@
-package com.example.middleproject;
+package com.danyloz.middleproject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

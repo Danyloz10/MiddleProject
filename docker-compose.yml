@@ -1,13 +1,30 @@
 version: '3.1'
 services:
-  db:
+  postgresdb:
     image: postgres
     ports:
       - "5432:5432"
     volumes:
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-      - ./postgres-data:/var/lib/postgresql/data
+      - db:/var/lib/postgres
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: middleProject
+  app:
+    depends_on:
+      - postgresdb
+    build: ../IDEAProjects
+    restart: on-failure
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/middleProject
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
