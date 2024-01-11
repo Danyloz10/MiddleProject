@@ -20,17 +20,14 @@ public class UserRepositoryTest {
 
     @Test
     public void testSaveUser() {
-        // Given
         User user = User.builder()
                 .username("john.doe")
                 .password("password")
                 .jwtToken("token")
                 .build();
 
-        // When
         User savedUser = userRepository.save(user);
 
-        // Then
         assertNotNull(savedUser.getId());
         assertEquals(user.getUsername(), savedUser.getUsername());
         assertEquals(user.getPassword(), savedUser.getPassword());
@@ -39,7 +36,6 @@ public class UserRepositoryTest {
 
     @Test
     public void testFindById() {
-        // Given
         User user = User.builder()
                 .username("jane.doe")
                 .password("password")
@@ -47,10 +43,8 @@ public class UserRepositoryTest {
                 .build();
         User savedUser = userRepository.save(user);
 
-        // When
         Optional<User> foundUserOptional = userRepository.findById(savedUser.getId());
 
-        // Then
         assertTrue(foundUserOptional.isPresent());
         User foundUser = foundUserOptional.get();
         assertEquals(savedUser.getId(), foundUser.getId());
@@ -61,7 +55,6 @@ public class UserRepositoryTest {
 
     @Test
     public void testFindByUsername() {
-        // Given
         User user = User.builder()
                 .username("alice.smith")
                 .password("password")
@@ -69,10 +62,8 @@ public class UserRepositoryTest {
                 .build();
         userRepository.save(user);
 
-        // When
         Optional<User> foundUserOptional = userRepository.findByUsername("alice.smith");
 
-        // Then
         assertTrue(foundUserOptional.isPresent());
         User foundUser = foundUserOptional.get();
         assertEquals(user.getUsername(), foundUser.getUsername());
@@ -82,17 +73,14 @@ public class UserRepositoryTest {
 
     @Test
     public void testFindByNonExistingUsername() {
-        // When
         Optional<User> foundUserOptional = userRepository.findByUsername("nonexistent");
 
-        // Then
         assertTrue(foundUserOptional.isEmpty());
     }
 
     @Test
     @DirtiesContext
     public void testDeleteUser() {
-        // Given
         User user = User.builder()
                 .username("bob.johnson")
                 .password("password")
@@ -100,10 +88,8 @@ public class UserRepositoryTest {
                 .build();
         User savedUser = userRepository.save(user);
 
-        // When
         userRepository.deleteById(savedUser.getId());
 
-        // Then
         Optional<User> foundUserOptional = userRepository.findById(savedUser.getId());
         assertTrue(foundUserOptional.isEmpty());
     }

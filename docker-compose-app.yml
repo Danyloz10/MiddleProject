@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  app:
+    build: ../IDEAProjects
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_IP=postgresdb
+      - DATABASE_CREDS_USER=root
+      - DATABASE_CREDS_PASS=root
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true

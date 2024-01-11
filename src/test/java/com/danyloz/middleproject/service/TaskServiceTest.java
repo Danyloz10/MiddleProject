@@ -6,12 +6,14 @@ import com.danyloz.middleproject.dto.UpdateTaskDTO;
 import com.danyloz.middleproject.entity.Task;
 import com.danyloz.middleproject.repository.TaskRepository;
 import com.danyloz.middleproject.service.implementation.TaskServiceImpl;
+import org.junit.ClassRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.time.LocalDateTime;
 import java.util.*;

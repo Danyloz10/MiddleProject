@@ -5,12 +5,14 @@ import com.danyloz.middleproject.dto.UserDTO;
 import com.danyloz.middleproject.entity.User;
 import com.danyloz.middleproject.repository.UserRepository;
 import com.danyloz.middleproject.service.implementation.UserServiceImpl;
+import org.junit.ClassRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.util.Optional;
 import java.util.UUID;
